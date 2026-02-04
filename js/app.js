@@ -180,7 +180,7 @@ const eventoFormulario = () => {
 
       try {
         // Enviar datos al servidor
-        const response = await fetch('reservas.php?accion=crear', {
+        const response = await fetch('api.php?accion=crear', {
           method: 'POST',
           body: formData
         });

@@ -24,6 +24,23 @@ CREATE TABLE IF NOT EXISTS reservas (
     INDEX idx_codigo (codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--Creear tabla de usuarios
+CREATE TABLE usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  usuario VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  rol ENUM('admin') DEFAULT 'admin',
+  estado TINYINT(1) DEFAULT 1,
+  creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO usuarios (nombre, usuario, password)
+VALUES (
+  'Administrador',
+  'admin',
+  '12345'
+);
+SELECT*FROM usuarios;
 
 -- Trigger para generar código único antes de insertar
 DELIMITER $$

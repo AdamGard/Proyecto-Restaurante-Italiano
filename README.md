@@ -28,8 +28,8 @@ ristorante-italini/
 │   └── admin-reservas.js      # JavaScript del panel admin
 │
 ├── assets/                     # Imágenes y recursos
-├── index.html                 # Página principal con formulario
-└── reservas.php              # 🚪 PUNTO DE ENTRADA (Enrutador)
+├── index.php                  # Página principal
+└── api.php                    # 🚪 API REST - PUNTO DE ENTRADA UNIFICADO
 ```
 
 ## Arquitectura en Capas
@@ -107,7 +107,7 @@ CREATE TABLE reservas (
 - ✅ **Model** (Reserva.php): Entidad con atributos y validaciones
 - ✅ **Service** (ReservaService.php): Lógica de negocio y consultas SQL
 - ✅ **Controller** (ReservaController.php): Manejo de peticiones HTTP
-- ✅ **Punto de entrada** (reservas.php): Enrutamiento de acciones
+- ✅ **API REST** (api.php): Punto de entrada unificado con CORS y enrutamiento
 
 ## Uso
 
@@ -143,47 +143,47 @@ CREATE TABLE reservas (
 
 ### Crear Reserva
 ```
-POST /reservas.php?accion=crear
+POST /api.php?accion=crear
 ```
 Parámetros: nombre, email, telefono, fecha, hora, personas, ocasion, comentarios
 
 ### Listar Reservas
 ```
-GET /reservas.php?accion=listar
+GET /api.php?accion=listar
 ```
 
 ### Listar por Estado
 ```
-GET /reservas.php?accion=listar-por-estado&estado=pendiente
+GET /api.php?accion=listar-por-estado&estado=pendiente
 ```
 Estados válidos: pendiente, confirmada, cancelada
 
 ### Obtener Reserva por ID
 ```
-GET /reservas.php?accion=obtener&id=1
+GET /api.php?accion=obtener&id=1
 ```
 
 ### Actualizar Estado
 ```
-POST /reservas.php?accion=actualizar-estado
+POST /api.php?accion=actualizar-estado
 ```
 Parámetros: id, estado
 
 ### Actualizar Reserva Completa
 ```
-POST /reservas.php?accion=actualizar
+POST /api.php?accion=actualizar
 ```
 Parámetros: id, nombre, email, telefono, fecha, hora, personas, ocasion, comentarios
 
 ### Eliminar Reserva
 ```
-POST /reservas.php?accion=eliminar
+POST /api.php?accion=eliminar
 ```
 Parámetros: id
 
 ### Estadísticas
 ```
-GET /reservas.php?accion=estadisticas
+GET /api.php?accion=estadisticas
 ```
 Retorna contadores por estado (pendiente, confirmada, cancelada, total)
 

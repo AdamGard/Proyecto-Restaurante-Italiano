@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para cargar reservas
     async function cargarReservas() {
         try {
-            const response = await fetch('../reservas.php?accion=listar');
+            const response = await fetch('../api.php?accion=listar');
             const resultado = await response.json();
 
             mensajeLoading.classList.add('ocultar');
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>
                     <div class="acciones-reserva">
                         <button class="btn-accion btn-ver" onclick="abrirModalEditar(${reserva.id})" title="Editar">
-                            ✏️ Editar
+                            ✏️
                         </button>
                         ${reserva.estado !== 'confirmada' 
                             ? `<button class="btn-accion btn-confirmar" onclick="cambiarEstado(${reserva.id}, 'confirmada')">
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formData.append('id', id);
             formData.append('estado', nuevoEstado);
 
-            const response = await fetch('../reservas.php?accion=actualizar-estado', {
+            const response = await fetch('../api.php?accion=actualizar-estado', {
                 method: 'POST',
                 body: formData
             });
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Obtener datos completos de la reserva
         try {
-            const response = await fetch(`../reservas.php?accion=obtener&id=${id}`);
+            const response = await fetch(`../api.php?accion=obtener&id=${id}`);
             const resultado = await response.json();
 
             if (resultado.success) {
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         const formData = new FormData(formEditar);
 
-        const response = await fetch('../reservas.php?accion=actualizar', {
+        const response = await fetch('../api.php?accion=actualizar', {
             method: 'POST',
             body: formData
         });
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData();
             formData.append('id', id);
 
-            const response = await fetch('../reservas.php?accion=eliminar', {
+            const response = await fetch('../api.php?accion=eliminar', {
                 method: 'POST',
                 body: formData
             });
